@@ -50,7 +50,7 @@ namespace codeshop
 					builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 				});
 			});
-      services.AddWebSocketManager();
+			services.AddWebSocketManager();
 			services.AddMvc();
 			services.AddTransient<IDbConnection>(x => CreateDBContext());
 
@@ -64,9 +64,8 @@ namespace codeshop
 				app.UseDeveloperExceptionPage();
 				app.UseCors("CORS_ENV_DEVELOPMENT");
 			}
-      app.UseWebSockets();
-      app.MapWebSocketManager("/ws", serviceProvider.GetService<BroadcastMessageHandler>());
-      app.MapWebSocketManager("/rooms", serviceProvider.GetService<RoomMessageHandler>());
+			app.UseWebSockets();
+			app.MapWebSocketManager("/ws", serviceProvider.GetService<BroadcastMessageHandler>());
 
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
